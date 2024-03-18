@@ -53,9 +53,9 @@ class TestConsole(unittest.TestCase):
 
         # Update
         self.assert_stdout(
-                "",
-                'update BaseModel {} name "New Name"'.format(obj1.id)
-                )
+            "",
+            'update BaseModel {} name "New Name"'.format(obj1.id)
+        )
         updated_obj = storage.all()['BaseModel.' + obj1.id]
         self.assertEqual(updated_obj.name, "New Name")
 
