@@ -1,48 +1,29 @@
 #!/usr/bin/python3
-
-import unittest
-from models import Review
-from datetime import datetime
-import os
+""" """
+from tests.test_models.test_base_model import test_basemodel
+from models.review import Review
 
 
-class TestReviewModel(unittest.TestCase):
-    def setUp(self):
-        self.review_model = Review()
+class test_review(test_basemodel):
+    """ """
 
-    def tearDown(self):
-        del self.review_model
+    def __init__(self, *args, **kwargs):
+        """ """
+        super().__init__(*args, **kwargs)
+        self.name = "Review"
+        self.value = Review
 
-    def test_instance_creation(self):
-        self.assertIsInstance(self.review_model, Review)
-        self.assertTrue(hasattr(self.review_model, 'id'))
-        self.assertTrue(hasattr(self.review_model, 'created_at'))
-        self.assertTrue(hasattr(self.review_model, 'updated_at'))
-        self.assertTrue(hasattr(self.review_model, 'place_id'))
-        self.assertTrue(hasattr(self.review_model, 'user_id'))
-        self.assertTrue(hasattr(self.review_model, 'text'))
+    def test_place_id(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.place_id), str)
 
-    def test_string_representation(self):
-        string_repr = str(self.review_model)
-        self.assertIn("[Review]", string_repr)
-        self.assertIn("id", string_repr)
-        self.assertIn("created_at", string_repr)
-        self.assertIn("updated_at", string_repr)
-        self.assertIn("place_id", string_repr)
-        self.assertIn("user_id", string_repr)
-        self.assertIn("text", string_repr)
+    def test_user_id(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.user_id), str)
 
-    def test_to_dict_method(self):
-        review_dict = self.review_model.to_dict()
-        self.assertIsInstance(review_dict, dict)
-        self.assertEqual(review_dict['__class__'], 'Review')
-        self.assertIn('id', review_dict)
-        self.assertIn('created_at', review_dict)
-        self.assertIn('updated_at', review_dict)
-        self.assertIn('place_id', review_dict)
-        self.assertIn('user_id', review_dict)
-        self.assertIn('text', review_dict)
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_text(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.text), str)
